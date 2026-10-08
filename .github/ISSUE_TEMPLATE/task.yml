@@ -1,0 +1,50 @@
+name: Task
+description: A change an agent or a person can pick up without asking anyone.
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What to change
+      description: The change, in one or two sentences. State the outcome, not the symptom.
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where
+      description: Files, workflows, tables or screens. A rough location is enough.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: A checkable condition, for example "the new test passes" or "the alert names the org".
+    validations:
+      required: true
+  - type: dropdown
+    id: verify
+    attributes:
+      label: Verify
+      description: What it takes to prove it works.
+      options:
+        - "t0: unit, build and lint are enough"
+        - "t1: needs a browser (Playwright, visual check)"
+        - "t2: needs a live system (HubSpot, n8n, Stripe, a database)"
+    validations:
+      required: true
+  - type: textarea
+    id: questions
+    attributes:
+      label: Open questions
+      description: Anything an agent would have to guess. For each, say what you would recommend, so it can be answered with "yes".
+      placeholder: "Q: Which email provider? Recommended: Postmark."
+    validations:
+      required: false
+  - type: input
+    id: default
+    attributes:
+      label: Default
+      description: If a question above is reversible and the recommendation is safe, name the option to build. The PR will state the choice for review.
+    validations:
+      required: false
